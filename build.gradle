@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.2' //프로젝트에 사용할 플러그인인 스프링 부트 플러그인
+    id 'io.spring.dependency-management' version '1.1.0' //스프링의 의존성 자동관리
+}
+
+group = 'wndud.o' //프로젝트 설정할 떄의 기본값인 그룹 이름과 버젼
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral() //의존성을 받을 저장소
+}
+
+dependencies { //프로젝트를 개발하며 필요한 기능의 의존성을 입력
+    //testImplementation platform('org.junit:junit-bom:5.9.1')
+    //testImplementation 'org.junit.jupiter:junit-jupiter' 기본값을 모두 지우고 웹관련 기능, 테스트 기능만 입력
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'//스프링부트용 JPA
+    runtimeOnly 'com.h2database:h2' //로컬환경과 테스트 환경에서 사용할 인메모리 DB:h2
+    compileOnly 'org.projectlombok:lombok' //반복 메서드 작성 작업을 줄여주는 라이브러리인 롬복 추가
+    annotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+    useJUnitPlatform()
+}
