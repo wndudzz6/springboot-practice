@@ -5,6 +5,11 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity //엔티티로 지정
 @Getter
@@ -33,6 +38,16 @@ public class Article {
         this.content = content;
     }
 
+
+    @CreatedDate //엔티티 생성될 때 생성 시간 저장
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate //엔티티가 수정될 때 수정 시간 저장
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+}
+
 //    protected Article(){ //기본 생성자 @NoArgsConstructor 애너테이션으로 대치 -> 가독성 상승
 //    }
 //
@@ -48,4 +63,4 @@ public class Article {
 //        return content;
 //    }
 
-}
+
